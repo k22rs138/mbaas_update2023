@@ -130,6 +130,16 @@
                 })
             //$("#display").html("update does not work");
         }
+
+        function searchData() { 
+            let level = parseInt($("#level").val()); 
+            let UTdata = ncmb.DataStore(db); 
+            UTdata 
+            .equalTo("score", score) 
+            .fetchAll() 
+            .then(function(results) { showResults(results); 
+            }) 
+        }
     </script>
 </head>
 
@@ -143,7 +153,8 @@
         <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">Fetch All</a>
         <a onclick="sortData()" class="btn btn-outline-secondary" role="button">Sort</a>
         <a onclick="countData()" class="btn btn-outline-secondary" role="button">Count</a>
-        <a onclick="deleteData()" class="btn btn-outline-secondary" role="buton">Delete</a>
+        <a onclick="deleteData()" class="btn btn-outline-secondary" role="button">Delete</a>
+        <a onclick="searchData()" class="btn btn-outline-secondary"role = "button">=</a>
     </div>
     <div>
         <input type="text" id="update" placeholder="更新">
