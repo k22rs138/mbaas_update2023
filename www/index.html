@@ -73,7 +73,21 @@
         }
 
         function countData() {
-            $("#display").html("count does not work");
+            UTdata.count().fetchAll()
+            
+                .then(function(results){
+                    $("#display").removeClass();
+                    $("#display").addClass("text-light");
+                    $("#display").addClass("bg-success");
+                    $("#display").html(results.count);
+                })
+                .catch(function(error) {
+                    $("#display").removeClass();
+                    $("#display").addClass("bg-warning");
+                    $("#display").html("count fail:" + JSON.stringify(error));
+                })
+
+            //$("#display").html("count does not work");
         }
 
         function deleteData() {
@@ -128,7 +142,7 @@
     <div>
         <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">Fetch All</a>
         <a onclick="sortData()" class="btn btn-outline-secondary" role="button">Sort</a>
-        <a onclick="countData()" class="btn btn-outline-primary" role="button">Count</a>
+        <a onclick="countData()" class="btn btn-outline-secondary" role="button">Count</a>
         <a onclick="deleteData()" class="btn btn-outline-secondary" role="buton">Delete</a>
     </div>
     <div>
