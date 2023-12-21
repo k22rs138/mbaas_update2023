@@ -14,6 +14,8 @@
         let UTdata = ncmb.DataStore("UpdateTest");
         let key = "score";
 
+        const db = "UpdateTest";
+
         function enterData() {
             let uTdata = new UTdata();
             let value = parseInt($("#data").val());
@@ -132,12 +134,13 @@
         }
 
         function searchData() { 
-            let level = parseInt($("#level").val()); 
+            let lt = parseInt($("#score").val()); 
             let UTdata = ncmb.DataStore(db); 
+            let msg = "";
             UTdata 
-            .equalTo("score", score) 
+            .lessThan("score", msg) 
             .fetchAll() 
-            .then(function(results) { showResults(results); 
+            .then(function(results) { $("#display").html(msg);
             }) 
         }
     </script>
@@ -150,11 +153,15 @@
         <a onclick="enterData()" class="btn btn-outline-secondary" role="button">Enter</a>
     </div>
     <div>
+        <label for="level"></label>
+        <input id="level" type="number" placeholder="未満">
+    </div>
+    <div>
         <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">Fetch All</a>
         <a onclick="sortData()" class="btn btn-outline-secondary" role="button">Sort</a>
         <a onclick="countData()" class="btn btn-outline-secondary" role="button">Count</a>
         <a onclick="deleteData()" class="btn btn-outline-secondary" role="button">Delete</a>
-        <a onclick="searchData()" class="btn btn-outline-secondary"role = "button">=</a>
+        <a onclick="searchData()" class="btn btn-outline-secondary"role = "button">&lt</a>
     </div>
     <div>
         <input type="text" id="update" placeholder="更新">
